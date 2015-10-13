@@ -11,6 +11,7 @@
 #define B_PIN_1 3
 
 void LedManager::setLedColors(Color channel_0, Color channel_1) {
+	#ifdef _arm_
 	softPwmWrite(R_PIN_0, channel_0.r*channel_0.a*LED_MAX);
 	softPwmWrite(G_PIN_0, channel_0.g*channel_0.a*LED_MAX);
 	softPwmWrite(B_PIN_0, channel_0.b*channel_0.a*LED_MAX);
@@ -18,9 +19,11 @@ void LedManager::setLedColors(Color channel_0, Color channel_1) {
 	softPwmWrite(R_PIN_1, channel_1.r*channel_1.a*LED_MAX);
 	softPwmWrite(G_PIN_1, channel_1.g*channel_1.a*LED_MAX);
 	softPwmWrite(B_PIN_1, channel_1.b*channel_1.a*LED_MAX);
+	#endif
 }
 
 void LedManager::ledInit() {
+	#ifdef _arm_
 	/*initialize led things*/
 	wiringPiSetup();
 
@@ -32,4 +35,5 @@ void LedManager::ledInit() {
 	softPwmCreate(R_PIN_1, 0, LED_MAX);
 	softPwmCreate(G_PIN_1, 0, LED_MAX);
 	softPwmCreate(B_PIN_1, 0, LED_MAX);
+	#endif
 }
