@@ -1,7 +1,7 @@
 #ifndef led_def
 #define led_def
 
-#ifdef _arm_
+#ifdef USE_LEDS
 #include <wiringPi.h>
 #include <softPwm.h>
 #endif
