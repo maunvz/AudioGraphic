@@ -32,7 +32,7 @@ void ColorManager::setColors(Color channel_0, Color channel_1) {
 	if(channel_1.a < 0.05) channel_1.a = 0.05;
 	if(channel_0.a > 1.1) channel_0.a = 1.1;
 	if(channel_1.a > 1.1) channel_1.a = 1.1;
-	offset += .007;
+	offset += .0007;
 	target_0 = channel_0;
 	target_1 = channel_1;
 	updateMutex.unlock();
