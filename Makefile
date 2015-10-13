@@ -1,7 +1,7 @@
-# build an executable called leds from leds_main.cpp
+# build an executable called ag from main.cpp
 
 main: main.cpp ColorManager.o SoundManager.o LedManager.o
-	g++ -g -Wall -o leds main.cpp ColorManager.o SoundManager.o LedManager.o -lpthread -lfftw3 -lm libs/libportaudio.a -lrt -lasound -lwiringPi -std=c++0x
+	g++ -g -Wall -o ag main.cpp ColorManager.o SoundManager.o LedManager.o -lpthread -lfftw3 -lm libs/libportaudio.a -lrt -lasound -lwiringPi -std=c++0x
   #-lrt -lasound -lwiringPi //RASPBERRY PI
 	#-framework CoreAudio -framework AudioUnit -framework Carbon -framework AudioToolbox -framework CoreServices //MAC
 ColorManager.o: ColorManager.cpp ColorManager.h
@@ -14,4 +14,4 @@ SoundManager.o: SoundManager.cpp SoundManager.h
 	g++ -c SoundManager.cpp -std=c++0x
 
 clean:
-	@rm -f 	leds *.o
+	@rm -f 	ag *.o
