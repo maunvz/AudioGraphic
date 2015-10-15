@@ -1,4 +1,6 @@
 #include "GraphicsManager.h"
+#include <string.h>
+#include <unistd.h>
 
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 200
