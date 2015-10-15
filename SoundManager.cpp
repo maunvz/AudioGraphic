@@ -118,21 +118,24 @@ void SoundManager::updateLeds(double *channels, double *num){
 	}
 
 	Color target_1 = {
-		0.8-(y/x)+3.0*z,											//G_PIN_0
-		0.4-z+x,														//R_PIN_0
-		.2+2*(x-y/2),												//B_PIN_0
-		1.5-1.8*cbrt(x*y*z)				 		//ALPHA_0
+		0.8-(y/x)+3.0*z,						//G_PIN_0
+		0.4-z+x,										//R_PIN_0
+		.2+2*(x-y/2),								//B_PIN_0
+		1.5-1.8*cbrt(x*y*z)				 	//ALPHA_0
 	};
 
 	Color target_0 = {
-		1.2*(.8-y)+x/1.5,		//R_PIN_1
-		.9*(1.25-y*.8)+0.4,						//G_PIN_1
-		z+y/2.0*.9,								//B_PIN_1
-		1.5-1.8*cbrt(x*y*z)						//ALPHA_1
+		1.2*(.8-y)+x/1.5,						//R_PIN_1
+		.9*(1.25-y*.8)+0.4,					//G_PIN_1
+		z+y/2.0*.9,									//B_PIN_1
+		1.5-1.8*cbrt(x*y*z)					//ALPHA_1
 	};
 
 	colorManager->setColors(target_0, target_1);
-	//data->soundManager->drawScreen(channels, x, y, z);
+}
+
+void SoundManager::updateGraphics(double *channels, double *num){
+	graphicsManager->draw(channels, num);
 }
 
 int SoundManager::initAudio(){
@@ -230,11 +233,13 @@ int SoundManager::processCallback( const void *inputBuffer, void *outputBuffer,
 		data->num[channel] += 1;
 	}
 	data->soundManager->updateLeds(data->channels, data->num);
+	data->soundManager->updateGraphics(data->channels, data->num);
 	return 0;
 }
 
-SoundManager::SoundManager(ColorManager *colorManager){
+SoundManager::SoundManager(ColorManager *colorManager, GraphicsManager *graphicsManager){
 	this->colorManager = colorManager;
+	this->graphicsManager = graphicsManager;
 	data = new paTestData();
 	data->in = (double *) fftw_malloc(sizeof(SAMPLE) * FRAMES_PER_BUFFER);
 	data->out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * FRAMES_PER_BUFFER);

@@ -1,4 +1,5 @@
 #include "ColorManager.h"
+#include "GraphicsManager.h"
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
@@ -20,6 +21,7 @@ typedef struct {
 class SoundManager {
 private:
 	ColorManager *colorManager;
+	GraphicsManager *graphicsManager;
 	PaStream *stream;
 	fftw_plan p;
 	paTestData *data;
@@ -32,13 +34,14 @@ private:
 	double averageChannels(double *channels, double *num, int min, int max);
 	double peakChannels(double *channels, double* num, int min, int max);
 	void updateLeds(double *channels, double *num);
+	void updateGraphics(double *channels, double *num);
 	static int processCallback( const void *inputBuffer, void *outputBuffer,
 	                           unsigned long framesPerBuffer,
 	                           const PaStreamCallbackTimeInfo* timeInfo,
 	                           PaStreamCallbackFlags statusFlags,
 	                           void *userData );
 public:
-	SoundManager(ColorManager *colorManager);
+	SoundManager(ColorManager *colorManager, GraphicsManager *graphicsManager);
 	PaStream* getStream();
 	int initAudio();
 	int closeAudio();
