@@ -132,10 +132,11 @@ void SoundManager::updateLeds(double *channels, double *num){
 	};
 
 	colorManager->setColors(target_0, target_1);
+	//drawScreen(channels, x, y, z);
 }
 
 void SoundManager::updateGraphics(double *channels, double *num){
-	graphicsManager->draw(channels, num);
+	graphicsManager->setLevels(channels, num);
 }
 
 int SoundManager::initAudio(){
@@ -232,9 +233,20 @@ int SoundManager::processCallback( const void *inputBuffer, void *outputBuffer,
 		data->channels[channel] += amp;
 		data->num[channel] += 1;
 	}
+	data->soundManager->smoothData(data);
 	data->soundManager->updateLeds(data->channels, data->num);
 	data->soundManager->updateGraphics(data->channels, data->num);
 	return 0;
+}
+
+void SoundManager::smoothData(paTestData *data){
+	for(int i=30; i>=0; i--){
+		if(data->num[i]==0){
+			double bef = i==0?0:data->channels[i-1];
+			double aft = i==29?0:data->channels[i+1];
+			data->channels[i] = (bef+aft)/2;
+		}
+	}
 }
 
 SoundManager::SoundManager(ColorManager *colorManager, GraphicsManager *graphicsManager){

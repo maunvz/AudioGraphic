@@ -35,6 +35,7 @@ private:
 	double peakChannels(double *channels, double* num, int min, int max);
 	void updateLeds(double *channels, double *num);
 	void updateGraphics(double *channels, double *num);
+	void smoothData(paTestData *data);
 	static int processCallback( const void *inputBuffer, void *outputBuffer,
 	                           unsigned long framesPerBuffer,
 	                           const PaStreamCallbackTimeInfo* timeInfo,
