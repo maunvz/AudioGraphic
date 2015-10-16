@@ -3,6 +3,7 @@
 #include "GraphicsManager.h"
 #include <math.h>
 #include <unistd.h>
+#include <string.h>
 
 #include <iostream>
 #include <stdio.h>
@@ -67,10 +68,5 @@ void ColorManager::smoothColorTo(Color *currentc, Color *targetc){
 
 }
 
-Color ColorManager::getColor0() {
-	return current_0;
-}
-
-Color ColorManager::getColor1() {
-	return current_1;
+void ColorManager::destroy(){
 }

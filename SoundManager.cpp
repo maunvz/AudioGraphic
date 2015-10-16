@@ -132,6 +132,9 @@ void SoundManager::updateLeds(double *channels, double *num){
 	};
 
 	colorManager->setColors(target_0, target_1);
+	char str[1024];
+	snprintf(str, 1024, "Volume: %.2f\n Test 2: %.2f\n", volume, x);
+	graphicsManager->setDebug(str);
 	//drawScreen(channels, x, y, z);
 }
 

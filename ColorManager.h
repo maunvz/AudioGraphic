@@ -29,8 +29,7 @@ private:
 public:
 	ColorManager(LedManager *ledManager, GraphicsManager *graphicsManager);
 	void setColors(Color channel1, Color channel2);
-	Color getColor0();
-	Color getColor1();
+	void destroy();
 };
 
 #endif

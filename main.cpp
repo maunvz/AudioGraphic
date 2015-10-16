@@ -26,6 +26,7 @@ int main(){
 	}
 	code = soundManager->closeAudio();
 	graphicsManager->destroy();
+	colorManager->destroy();
 
 	if(code!=0) return code;
 	printf("No errors.\n");
