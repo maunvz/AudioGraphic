@@ -9,8 +9,8 @@ Created by Mauricio Narvaez
 
 int main(){
 	LedManager *ledManager = new LedManager();
-	ColorManager *colorManager = new ColorManager(ledManager);
 	GraphicsManager *graphicsManager = new GraphicsManager();
+	ColorManager *colorManager = new ColorManager(ledManager, graphicsManager);
 	SoundManager *soundManager = new SoundManager(colorManager, graphicsManager);
 	ledManager->ledInit();
 

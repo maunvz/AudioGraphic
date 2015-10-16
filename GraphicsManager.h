@@ -2,6 +2,7 @@
 #define graphics_def
 
 #include <SFML/Graphics.hpp>
+#include "ColorManager.h"
 
 class GraphicsManager {
 private:
@@ -16,6 +17,7 @@ public:
 	GraphicsManager();
 	void destroy();
 	void setLevels(double *channels, double *num);
+	void setColors(Color channel1, Color channel2);
 	void draw();
 	bool manageWindow();
 };

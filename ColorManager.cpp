@@ -1,5 +1,6 @@
 #include "ColorManager.h"
 #include "LedManager.h"
+#include "GraphicsManager.h"
 #include <math.h>
 #include <unistd.h>
 
@@ -8,9 +9,10 @@
 
 #define SMOOTHING 8.0
 
-ColorManager::ColorManager(LedManager *ledManager){
+ColorManager::ColorManager(LedManager *ledManager, GraphicsManager *graphicsManager){
 	offset = 0;
 	this->ledManager = ledManager;
+	this->graphicsManager = graphicsManager;
 	std::thread t(&ColorManager::update, this);
 	t.detach();
 }
@@ -21,6 +23,8 @@ void ColorManager::update() {
 		smoothColorTo(&current_0, &target_0);
 		smoothColorTo(&current_1, &target_1);
 		ledManager->setLedColors(current_0, current_1);
+		graphicsManager->setColors(current_0, current_1);
+
 		updateMutex.unlock();
 		usleep(20000);
 	}

@@ -9,8 +9,8 @@ libs_for_pi = -lrt -lasound -lwiringPi libs/rpi/libportaudio.a -DUSE_LEDS
 defs_for_pi = -DUSE_LEDS
 defs_for_unix = -DUSE_GUI
 defs_for_mac = -DUSE_GUI
-libs = $(libs_for_unix) -lpthread -lfftw3 -lm
-defs = $(defs_for_unix)
+libs = $(libs_for_mac) -lpthread -lfftw3 -lm
+defs = $(defs_for_mac)
 inc = -I/usr/local/include -L/usr/local/lib
 
 obj = SoundManager.o LedManager.o GraphicsManager.o ColorManager.o

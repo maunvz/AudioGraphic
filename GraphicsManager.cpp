@@ -28,6 +28,11 @@ void GraphicsManager::setLevels(double *channels, double *num) {
 	memcpy(this->channels_target, channels, CHANNEL_NUM*sizeof(double));
 }
 
+void GraphicsManager::setColors(Color color_0, Color color_1){
+	/* show the color (add two squares?) use 3 windows? */
+	/* particle cannon display */
+}
+
 void GraphicsManager::drawLoop(){
 	while(canDraw){
 		for(int i=0; i<CHANNEL_NUM; i++){
