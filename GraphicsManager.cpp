@@ -57,7 +57,7 @@ void GraphicsManager::drawLoop(){
 
 /* pos is 0-29, value is 0-1 */
 void GraphicsManager::drawBar(int pos, float value, sf::RectangleShape *rectangle){
-	Color c = channel_0;
+	Color c = {0.1,0.1,0.1,1};//channel_0;
 	/* For now simple rectangles that fill up width exactly, no padding
 	 * or style of any kind */
 	float width = (float)WINDOW_WIDTH/(float)DISPLAY_NUM;
@@ -68,6 +68,19 @@ void GraphicsManager::drawBar(int pos, float value, sf::RectangleShape *rectangl
  	window->draw(*rectangle);
 }
 
+void GraphicsManager::drawLabel(int pos, float value){
+	float width = (float)WINDOW_WIDTH/(float)DISPLAY_NUM;
+	char buf[8];
+	snprintf(buf, 8, "%.2f", value);
+	sf::Text text;
+	text.setFont(*font);
+	text.setString(buf);
+	text.setCharacterSize(10);
+	text.setColor(sf::Color::White);
+ 	text.setPosition(width*pos, WINDOW_HEIGHT-10);
+	window->draw(text);
+}
+
 /* Only reads from channels and num so no mutex needed */
 void GraphicsManager::draw(){
 	window->clear(sf::Color(0,0,0,255));
@@ -75,6 +88,7 @@ void GraphicsManager::draw(){
 	sf::RectangleShape rectangle;
 	for(int i=CHANNEL_NUM-DISPLAY_NUM; i<CHANNEL_NUM; i++){
 		drawBar(i-(CHANNEL_NUM-DISPLAY_NUM), channels[i]/80.0, &rectangle);
+		drawLabel(i-(CHANNEL_NUM-DISPLAY_NUM), channels[i]/80.0);
 	}
 
 	sf::Text text;

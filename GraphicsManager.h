@@ -15,6 +15,7 @@ private:
 	void drawLoop();
 	bool canDraw;
 	void drawBar(int pos, float value, sf::RectangleShape *rectangle);
+	void drawLabel(int pos, float value);
 	Color channel_0;
 	Color channel_1;
 	sf::Font *font;

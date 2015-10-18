@@ -7,34 +7,6 @@
 #define PA_SAMPLE_TYPE paFloat32
 typedef float SAMPLE;
 
-void SoundManager::drawScreen(double* channels, double x, double y, double z){
-	for (int j=0; j<30; j++) {
-		std::cout << "--";
-	}
-	std::cout << '\n';
-
-	for(int i=0; i<20; i++){
-		for (int j=0; j<30; j++) {
-			double db = (channels[j])/channelWidth(j);
-			std::cout << (db>i?'0':' ');
-			std::cout << ' ';
-		}
-		std::cout << "   ";
-
-		std::cout << (x*2>i?"00":"  ");
-		std::cout << ' ';
-
-		std::cout << (y*2>i?"00":"  ");
-		std::cout << ' ';
-
-		std::cout << (z*2>i?"00":"  ");
-		std::cout << ' ';
-
-		std::cout << '\n';
-	}
-	std::cout << '\n';
-}
-
 static double channelToHz(int index) {
 	static double freqs[30] = {20,25,31.5,40,50,63,80,100,125,160,
 												200,250,315,400,500,630,800,1000,1250,1600,

@@ -29,7 +29,6 @@ private:
 	double channelMaxHz(int index);
 	double channelWidth(int index);
 	double volume;
-	void drawScreen(double* channels, double x, double y, double z);
 	int channelFromHz(double hz);
 	double averageChannels(double *channels, double *num, int min, int max);
 	double peakChannels(double *channels, double* num, int min, int max);
